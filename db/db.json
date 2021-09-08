@@ -2,5 +2,10 @@
     {
         "title":"Test Title",
         "text":"Test text"
+    },
+
+    {
+        "title": "note title",
+        "text": "this is the note text that should be displaying"
     }
 ]

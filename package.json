@@ -4,11 +4,21 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm start"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eliselabonte/note-taker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eliselabonte/note-taker/issues"
+  },
+  "homepage": "https://github.com/eliselabonte/note-taker#readme"
 }
