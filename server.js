@@ -6,6 +6,9 @@ const fs = require('fs');
 // create unique id for each note
 const uuid = require('./helpers/uuid');
 
+// import js/api logic for notes page
+const api = require('./routes/noteLogic');
+
 // import middleware
 const { clog } = require('./middleware/clog.js')
 
@@ -22,6 +25,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', api);
 
 app.use(express.static('public'));
+
+// need GET method for notes page to retrieve notes from database
+// need POST method to add a note
 
 // Wildcard route to direct users to a 404 page
 app.get('*', (req, res) =>
