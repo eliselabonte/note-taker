@@ -1,7 +1,7 @@
-const noteFile = require('express').Router;
+const noteFile = require('express').Router();
 const fs = require('fs');
 // assign random id to new notes
-const { v4:uuidv4 } = require('uuid');
+const { v4:uuidv4 } = require('../helpers/uuid');
 
 // read previous notes and print on page
 noteFile.get('/', (req, res) => {

@@ -14,10 +14,10 @@ const { clog } = require('./middleware/clog.js')
 
 const PORT = process.env.PORT || 3001;
 
-const app = express;
+const app = express();
 
 // use middleware to log requests in console
-app.request(clog);
+// app.request(clog);
 
 // Middleware for parsing JSON and urlencoded form data
 app.use(express.json());
@@ -27,6 +27,12 @@ app.use('/api', api);
 app.use(express.static('public'));
 
 // need GET method for notes page to retrieve notes from database
+app.get('/', (req, res) =>  
+    res.sendFile(path.join(__dirname, './public/index.html'))
+);
+
+app.get('/notes', (req, res) =>
+    res.sendFile(path.join(__dirname, './public/notes.html')))
 // need POST method to add a note
 
 // Wildcard route to direct users to a 404 page
