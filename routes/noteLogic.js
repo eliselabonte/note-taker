@@ -1,17 +1,19 @@
-const noteFile = require('express').Router();
+const apiRouter = require('express').Router();
 const fs = require('fs');
+const path = require('path');
 // assign random id to new notes
 const { v4:uuidv4 } = require('../helpers/uuid');
 
 // read previous notes and print on page
-noteFile.get('/', (req, res) => {
-    fs.readFile('../db/db.json', (err, data) => {
-        err ? console.log(err) : res.json(JSON.parse.data)
+apiRouter.get('/notes', (req, res) => {
+    const data = '../db/db.json';
+    fs.readFile(path.join(__dirname, data), (err, data) => {
+        err ? console.log(err) : res.json(JSON.parse(data))
     })
 })
 
 // read previous notes and append new note to db
-noteFile.post('/', (req, res) => {
+apiRouter.post('/', (req, res) => {
     const request = req.body
     const { title, text } = req.body;
 
@@ -25,7 +27,7 @@ noteFile.post('/', (req, res) => {
             id: uuidv4()
         }
         // read the file and write the new note to it
-        fs.readFile('../db/db.json', (err, data) => {
+        fs.readFile(path.join(__dirname, '../db/db.json'), (err, data) => {
             if (err) {
                 throw err
             }
@@ -38,13 +40,13 @@ noteFile.post('/', (req, res) => {
                 const stringifiedNew = JSON.stringify(newParsed);
 
                 // now write it all into the new file
-                fs.writeFile('../db/db/json', stringifiedNew, (err) => {
+                fs.writeFile(path.join(__dirname, '../db/db.json'), stringifiedNew, (err) => {
                     if (err)    {
                         throw err
                     }
                     else {
                         // then print the updated file to the page
-                        fs.readFile('../db/db/json', (err, data) =>   {
+                        fs.readFile(path.join(__dirname, '../db/db.json'), (err, data) =>   {
                         err ? console.log(err) : res.json(JSON.parse(data)) }
                         )
                     }
@@ -54,4 +56,4 @@ noteFile.post('/', (req, res) => {
     }
 })
 
-module.exports = noteFile;
+module.exports = apiRouter;
